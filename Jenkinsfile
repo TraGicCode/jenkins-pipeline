@@ -4,7 +4,7 @@ pipeline {
         stage('Build') {
             steps {
 
-                githubNotify status: "PENDING", description: "Build is starting...", credentialsId: "tragiccode"
+                githubNotify status: "PENDING", description: "Build is starting...", credentialsId: "tragiccode/******"
                 echo 'Building'
                 sh 'sleep 30'
             }
