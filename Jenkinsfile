@@ -2,15 +2,6 @@ pipeline {
     agent any
     stages {
         stage('Build') {
-            githubNotify(
-                context:     'Jenkins Build',
-                description: 'Build has been scheduled.',
-                status:      'PENDING',
-                credentialsId: 'tragiccode/******',
-                account: 'tragiccode',
-                repo: 'jenkins-pipeline',
-                targetUrl: 'http://www.cloudbees.com'
-            )
             steps {
                 echo 'Building'
                 sh 'sleep 30'
