@@ -2,6 +2,11 @@ pipeline {
     agent any
     stages {
         stage('Build') {
+            githubNotify(
+                context:     'Jenkins Build',
+                description: 'Build has been scheduled.',
+                status:      'PENDING'
+            )
             steps {
                 echo 'Building'
             }
