@@ -3,6 +3,15 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                githubNotify(
+                    context:     'Jenkins Build',
+                    description: 'Build has been scheduled.',
+                    status:      'PENDING',
+                    credentialsId: 'tragiccode',
+                    account: 'tragiccode',
+                    repo: 'jenkins-pipeline',
+                    targetUrl: 'http://www.cloudbees.com'
+                )
                 echo 'Building'
                 sh 'sleep 30'
             }
