@@ -7,6 +7,8 @@ pipeline {
                 description: 'Build has been scheduled.',
                 status:      'PENDING',
                 credentialsId: 'tragiccode/******',
+                account: 'tragiccode',
+                repo: 'jenkins-pipeline',
                 targetUrl: 'http://www.cloudbees.com'
             )
             steps {
