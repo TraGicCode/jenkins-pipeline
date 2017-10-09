@@ -50,7 +50,7 @@ pipeline {
         slackSend channel: '#jenkins',
                   baseUrl: 'https://hooks.slack.com/services',
                   color: 'danger',
-                  attachments: notifySlack
+                  attachments: notifySlack.toString()
         }
     }
 }
