@@ -1,3 +1,5 @@
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 def notifySlack() {
     JSONArray attachments = new JSONArray();
     JSONObject attachment = new JSONObject();
