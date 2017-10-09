@@ -5,7 +5,7 @@ def notifySlack() {
     JSONArray attachments = new JSONArray();
     JSONObject attachment = new JSONObject();
 
-    attachments.add(JsonOutput.toJson([
+    def payload = JsonOutput.toJson([
         attachments:     [
                     [
                         title: "asd, build #${env.BUILD_NUMBER}",
@@ -38,9 +38,9 @@ def notifySlack() {
                         "mrkdwn_in": ["text"],
                     ]
                 ]
-    ]))
+    ])
 
-    return attachments
+    return payload
 }
 
 pipeline {
