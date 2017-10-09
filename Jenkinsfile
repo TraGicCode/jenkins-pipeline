@@ -8,10 +8,10 @@ def notifySlack() {
     def payload = JsonOutput.toJson([
         attachments:     [
                     [
-                        title: "${jobName}, build #${env.BUILD_NUMBER}",
+                        title: "asd, build #${env.BUILD_NUMBER}",
                         title_link: "${env.BUILD_URL}",
-                        color: "${buildColor}",
-                        text: "${buildStatus}\n${author}",
+                        color: "red",
+                        text: "asd",
                         "mrkdwn_in": ["fields"],
                         fields: [
                             [
@@ -21,20 +21,20 @@ def notifySlack() {
                             ],
                             [
                                 title: "Test Results",
-                                value: "${testSummary}",
+                                value: "asd",
                                 short: true
                             ],
                             [
                                 title: "Last Commit",
-                                value: "${message}",
+                                value: "asd",
                                 short: false
                             ]
                         ]
                     ],
                     [
                         title: "Failed Tests",
-                        color: "${buildColor}",
-                        text: "${failedTestsString}",
+                        color: "red",
+                        text: "asd",
                         "mrkdwn_in": ["text"],
                     ]
                 ]
