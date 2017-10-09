@@ -7,26 +7,23 @@ def notifySlack() {
 
     def payload = JsonOutput.toJson([
                     [
-                        title: "asd, build #${env.BUILD_NUMBER}",
-                        title_link: "${env.BUILD_URL}",
-                        "image_url": "http://my-website.com/path/to/image.jpg",
+                        author_name: 'jenkins',
                         color: "red",
-                        text: "asd",
                         "mrkdwn_in": ["fields"],
                         fields: [
                             [
+                                title: "Topic",
+                                value: "Puppet Control Repository Build Pipeline",
+                                short: false
+                            ],
+                            [
                                 title: "Branch",
-                                value: "${env.GIT_BRANCH}",
+                                value: "${env.BRANCH_NAME}",
                                 short: true
                             ],
                             [
-                                title: "Test Results",
-                                value: "asd",
-                                short: true
-                            ],
-                            [
-                                title: "ds",
-                                value: "asd",
+                                title: "Build Log",
+                                value: "<${env.BUILD_URL}|Click Here>",
                                 short: false
                             ]
                         ]
