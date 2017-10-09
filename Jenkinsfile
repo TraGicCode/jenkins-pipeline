@@ -75,7 +75,7 @@ pipeline {
                   baseUrl: 'https://hooks.slack.com/services',
                   color: 'good',
                   message: 'asd',
-                  attachments: notifySlack().toString()
+                  attachments: notifySlack()
         }
     failure {
         githubNotify status: "FAILURE", description: "The Jenkins CI build failed.", credentialsId: "a01cf4f0-3b25-4e3c-a112-65f33111e93f"
@@ -83,7 +83,7 @@ pipeline {
                   baseUrl: 'https://hooks.slack.com/services',
                   color: 'danger',
                   message: 'asd',
-                  attachments: notifySlack().toString()
+                  attachments: notifySlack()
         }
     }
 }
