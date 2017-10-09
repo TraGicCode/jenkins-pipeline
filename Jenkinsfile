@@ -1,18 +1,24 @@
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
-import groovy.json.JsonOutput
-def notifySlack() {
+import groovy.json.JsonOutput;
+
+def notifySlack(status, color) {
     JSONArray attachments = new JSONArray();
     JSONObject attachment = new JSONObject();
 
     def payload = JsonOutput.toJson([
                     [
-                        color: "danger",
+                        color: color,
                         "mrkdwn_in": ["fields"],
                         fields: [
                             [
                                 title: "Topic",
                                 value: "Puppet Control Repository Build Pipeline",
+                                short: false
+                            ],
+                                                        [
+                                title: "Build Status",
+                                value: status,
                                 short: false
                             ],
                             [
@@ -64,7 +70,7 @@ pipeline {
                   baseUrl: 'https://hooks.slack.com/services',
                   color: 'good',
                   message: 'asd',
-                  attachments: notifySlack()
+                  attachments: notifySlack('success', 'good')
         }
     failure {
         githubNotify status: "FAILURE", description: "The Jenkins CI build failed.", credentialsId: "a01cf4f0-3b25-4e3c-a112-65f33111e93f"
@@ -72,7 +78,7 @@ pipeline {
                   baseUrl: 'https://hooks.slack.com/services',
                   color: 'danger',
                   message: 'asd',
-                  attachments: notifySlack()
+                  attachments: notifySlack('failure', 'danger')
         }
     }
 }
