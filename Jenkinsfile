@@ -1,3 +1,15 @@
+def notifySlack(text, channel, attachments) {
+    def jenkinsIcon = 'https://wiki.jenkins-ci.org/download/attachments/2916393/logo.png'
+
+    def payload = JsonOutput.toJson([text: text,
+        channel: channel,
+        username: "Jenkins",
+        icon_url: jenkinsIcon,
+        attachments: attachments
+    ])
+   return payload
+}
+
 pipeline {
     agent any
     stages {
@@ -30,7 +42,37 @@ pipeline {
                   baseUrl: 'https://hooks.slack.com/services',
                   color: 'good',
                   icon_url: 'https://wiki.jenkins-ci.org/download/attachments/2916393/logo.png',
-                  message: "The pipeline ${currentBuild.fullDisplayName} completed successfully."
+                  attachments: notifySlack("", slackNotificationChannel, [
+            [
+                title: "${env.JOB_NAME}, build #${env.BUILD_NUMBER}",
+                title_link: "${env.BUILD_URL}",
+                color: "danger",
+                author_name: "${author}",
+                text: "${buildStatus}",
+                fields: [
+                    [
+                        title: "Branch",
+                        value: "${env.GIT_BRANCH}",
+                        short: true
+                    ],
+                    [
+                        title: "Test Results",
+                        value: "${testSummary}",
+                        short: true
+                    ],
+                    [
+                        title: "Last Commit",
+                        value: "${message}",
+                        short: false
+                    ],
+                    [
+                        title: "Error",
+                        value: "${e}",
+                        short: false
+                    ]
+                ]
+            ]
+        ])
         }
     failure {
         githubNotify status: "FAILURE", description: "The Jenkins CI build failed.", credentialsId: "075c0433-789a-48af-a1ec-d0d2411acbec"
@@ -38,7 +80,36 @@ pipeline {
                   baseUrl: 'https://hooks.slack.com/services',
                   color: 'danger',
                   icon_url: 'https://wiki.jenkins-ci.org/download/attachments/2916393/logo.png',
-                  message: "The pipeline ${currentBuild.fullDisplayName} failed."
-        }
+                  attachments: notifySlack("", slackNotificationChannel, [
+            [
+                title: "${env.JOB_NAME}, build #${env.BUILD_NUMBER}",
+                title_link: "${env.BUILD_URL}",
+                color: "danger",
+                author_name: "${author}",
+                text: "${buildStatus}",
+                fields: [
+                    [
+                        title: "Branch",
+                        value: "${env.GIT_BRANCH}",
+                        short: true
+                    ],
+                    [
+                        title: "Test Results",
+                        value: "${testSummary}",
+                        short: true
+                    ],
+                    [
+                        title: "Last Commit",
+                        value: "${message}",
+                        short: false
+                    ],
+                    [
+                        title: "Error",
+                        value: "${e}",
+                        short: false
+                    ]
+                ]
+            ]
+        ])
     }
 }
