@@ -26,7 +26,7 @@ def notifySlack() {
                                 short: true
                             ],
                             [
-                                title: "Last Commit",
+                                title: "${currentBuild.rawBuild.getAction(AbstractTestResultAction.class).getTotalCount()}",
                                 value: "asd",
                                 short: false
                             ]
