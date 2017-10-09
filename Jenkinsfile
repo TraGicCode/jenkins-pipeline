@@ -16,10 +16,10 @@ def notifySlack(status, color) {
                                 value: "Puppet Control Repository Build Pipeline",
                                 short: false
                             ],
-                                                        [
+                            [
                                 title: "Build Status",
                                 value: status,
-                                short: false
+                                short: true
                             ],
                             [
                                 title: "Branch",
@@ -69,7 +69,7 @@ pipeline {
         slackSend channel: '#jenkins',
                   baseUrl: 'https://hooks.slack.com/services',
                   color: 'good',
-                  message: 'asd',
+                  message: 'N/A',
                   attachments: notifySlack('success', 'good')
         }
     failure {
@@ -77,7 +77,7 @@ pipeline {
         slackSend channel: '#jenkins',
                   baseUrl: 'https://hooks.slack.com/services',
                   color: 'danger',
-                  message: 'asd',
+                  message: 'N/A',
                   attachments: notifySlack('failure', 'danger')
         }
     }
