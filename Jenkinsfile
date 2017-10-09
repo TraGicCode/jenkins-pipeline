@@ -6,7 +6,6 @@ def notifySlack() {
     JSONObject attachment = new JSONObject();
 
     def payload = JsonOutput.toJson([
-        attachments:     [
                     [
                         title: "asd, build #${env.BUILD_NUMBER}",
                         title_link: "${env.BUILD_URL}",
@@ -37,8 +36,7 @@ def notifySlack() {
                         text: "asd",
                         "mrkdwn_in": ["text"],
                     ]
-                ]
-    ])
+                ])
 
     return payload
 }
