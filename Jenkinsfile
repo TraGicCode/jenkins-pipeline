@@ -4,11 +4,42 @@ def notifySlack() {
     JSONArray attachments = new JSONArray();
     JSONObject attachment = new JSONObject();
 
-    attachment.put('text','I find your lack of faith disturbing!');
-    attachment.put('fallback','Hey, Vader seems to be mad at you.');
-    attachment.put('color','#ff0000');
+    def payload = JsonOutput.toJson([
+        attachments:     [
+                    [
+                        title: "${jobName}, build #${env.BUILD_NUMBER}",
+                        title_link: "${env.BUILD_URL}",
+                        color: "${buildColor}",
+                        text: "${buildStatus}\n${author}",
+                        "mrkdwn_in": ["fields"],
+                        fields: [
+                            [
+                                title: "Branch",
+                                value: "${env.GIT_BRANCH}",
+                                short: true
+                            ],
+                            [
+                                title: "Test Results",
+                                value: "${testSummary}",
+                                short: true
+                            ],
+                            [
+                                title: "Last Commit",
+                                value: "${message}",
+                                short: false
+                            ]
+                        ]
+                    ],
+                    [
+                        title: "Failed Tests",
+                        color: "${buildColor}",
+                        text: "${failedTestsString}",
+                        "mrkdwn_in": ["text"],
+                    ]
+                ]
+    ])
 
-    attachments.add(attachment);
+    attachments.add(payload);
     return attachments
 }
 
