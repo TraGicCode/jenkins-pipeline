@@ -17,7 +17,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                githubNotify status: "PENDING", description: "Build is starting...", credentialsId: "075c0433-789a-48af-a1ec-d0d2411acbec"
+                githubNotify status: "PENDING", description: "Build is starting...", credentialsId: "a01cf4f0-3b25-4e3c-a112-65f33111e93f"
                 echo 'Building'
                 sh 'sleep 10'
             }
@@ -39,7 +39,7 @@ pipeline {
 
     post {
     success {
-        githubNotify status: "SUCCESS", description: "The Jenkins CI build passwed.", credentialsId: "075c0433-789a-48af-a1ec-d0d2411acbec"
+        githubNotify status: "SUCCESS", description: "The Jenkins CI build passwed.", credentialsId: "a01cf4f0-3b25-4e3c-a112-65f33111e93f"
         slackSend channel: '#jenkins',
                   baseUrl: 'https://hooks.slack.com/services',
                   color: 'good',
@@ -47,7 +47,7 @@ pipeline {
                   attachments: notifySlack
         }
     failure {
-        githubNotify status: "FAILURE", description: "The Jenkins CI build failed.", credentialsId: "075c0433-789a-48af-a1ec-d0d2411acbec"
+        githubNotify status: "FAILURE", description: "The Jenkins CI build failed.", credentialsId: "a01cf4f0-3b25-4e3c-a112-65f33111e93f"
         slackSend channel: '#jenkins',
                   baseUrl: 'https://hooks.slack.com/services',
                   color: 'danger',
