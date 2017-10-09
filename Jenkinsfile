@@ -1,5 +1,6 @@
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import groovy.json.JsonOutput
 def notifySlack() {
     JSONArray attachments = new JSONArray();
     JSONObject attachment = new JSONObject();
@@ -39,8 +40,7 @@ def notifySlack() {
                 ]
     ])
 
-    attachments.add(payload);
-    return attachments
+    return payload
 }
 
 pipeline {
