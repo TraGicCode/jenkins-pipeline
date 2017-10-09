@@ -41,7 +41,6 @@ pipeline {
         slackSend channel: '#jenkins',
                   baseUrl: 'https://hooks.slack.com/services',
                   color: 'good',
-                  icon_url: 'https://wiki.jenkins-ci.org/download/attachments/2916393/logo.png',
                   attachments: notifySlack("", slackNotificationChannel, [
             [
                 title: "${env.JOB_NAME}, build #${env.BUILD_NUMBER}",
@@ -79,7 +78,6 @@ pipeline {
         slackSend channel: '#jenkins',
                   baseUrl: 'https://hooks.slack.com/services',
                   color: 'danger',
-                  icon_url: 'https://wiki.jenkins-ci.org/download/attachments/2916393/logo.png',
                   attachments: notifySlack("", slackNotificationChannel, [
             [
                 title: "${env.JOB_NAME}, build #${env.BUILD_NUMBER}",
