@@ -25,7 +25,7 @@ def notifySlack() {
                                 short: true
                             ],
                             [
-                                title: "${currentBuild.rawBuild.getAction(AbstractTestResultAction.class).getTotalCount()}",
+                                title: "ds",
                                 value: "asd",
                                 short: false
                             ]
