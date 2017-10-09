@@ -9,7 +9,7 @@ def notifySlack() {
                     [
                         title: "asd, build #${env.BUILD_NUMBER}",
                         title_link: "${env.BUILD_URL}",
-                        author_icon: 'https://wiki.jenkins-ci.org/download/attachments/2916393/logo.png',
+                        author_icon: 'http://wiki.jenkins-ci.org/download/attachments/2916393/logo.png',
                         color: "red",
                         text: "asd",
                         "mrkdwn_in": ["fields"],
