@@ -50,20 +50,20 @@ pipeline {
             steps {
                 githubNotify status: "PENDING", description: "Build is starting...", credentialsId: "a01cf4f0-3b25-4e3c-a112-65f33111e93f"
                 echo 'Building'
-                sh 'sleep 10'
+                sh 'sleep 1'
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing'
-                sh 'sleep 10'
+                sh 'sleep 1'
             }
         }
         stage('Deploy') {
             when { branch "production" }
             steps {
                 echo 'Deploying'
-                sh 'sleep 10'
+                sh 'sleep 1'
             }
         }
     }
