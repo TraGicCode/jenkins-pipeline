@@ -7,8 +7,7 @@ def notifySlack() {
 
     def payload = JsonOutput.toJson([
                     [
-                        author_name: 'jenkins',
-                        color: "red",
+                        color: "danger",
                         "mrkdwn_in": ["fields"],
                         fields: [
                             [
@@ -28,12 +27,6 @@ def notifySlack() {
                             ]
                         ]
                     ],
-                    [
-                        title: "Failed Tests",
-                        color: "red",
-                        text: "asd",
-                        "mrkdwn_in": ["text"],
-                    ]
                 ])
 
     return payload
