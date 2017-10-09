@@ -43,6 +43,7 @@ pipeline {
         slackSend channel: '#jenkins',
                   baseUrl: 'https://hooks.slack.com/services',
                   color: 'good',
+                  message: 'asd',
                   attachments: notifySlack
         }
     failure {
@@ -50,6 +51,7 @@ pipeline {
         slackSend channel: '#jenkins',
                   baseUrl: 'https://hooks.slack.com/services',
                   color: 'danger',
+                  message: 'asd',
                   attachments: notifySlack.toString()
         }
     }
