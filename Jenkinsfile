@@ -9,8 +9,7 @@ def notifySlack() {
                     [
                         title: "asd, build #${env.BUILD_NUMBER}",
                         title_link: "${env.BUILD_URL}",
-                        "author_name": "Stanford S. Strickland",
-            "author_icon": "http://a.slack-edge.com/7f18https://a.slack-edge.com/bfaba/img/api/homepage_custom_integrations-2x.png",
+                        "image_url": "http://my-website.com/path/to/image.jpg",
                         color: "red",
                         text: "asd",
                         "mrkdwn_in": ["fields"],
